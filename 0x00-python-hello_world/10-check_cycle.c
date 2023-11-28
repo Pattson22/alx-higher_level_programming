@@ -1,39 +1,31 @@
 #include "lists.h"
 
 /**
-* check_cycle - Check for a cycle in a linked list.
-* @list: Head of the linked list.
-*
-* Description: This function checks for the presence of a cycle
-* in a linked list using the Floyd's Tortoise and Hare algorithm.
-*
-* Return: 1 if a cycle is detected, 0 if there is no cycle.
-*/
+ * check_cycle - check for loop in linked list
+ * @list: head of linked list
+ *
+ * Description - check for loops in linked list
+ * Return: 1 if cycled, 0 if not
+ */
+
 int check_cycle(listint_t *list)
 {
 	listint_t *slow, *fast;
 
 	if (!list)
 	{
-	return (0);
+		return (0);
 	}
-
+	slow = list;
 	fast = list->next;
-
-
 	while (fast && slow && fast->next)
 	{
-	if (slow == fast)
-	{
-
-	return (1);
+		if (slow == fast)
+		{
+			return (1);
+		}
+		slow = slow->next;
+		fast = fast->next->next;
 	}
-
-
-	slow = slow->next;
-
-	fast = fast->next->next;
-	}
-
 	return (0);
 }
